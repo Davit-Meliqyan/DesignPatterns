@@ -4,15 +4,17 @@ public final class ImmutablePoint {
     private final double x;
     private final double y;
 
+    private final int[] coord;
 
-    public ImmutablePoint(double x, double y) {
+    public ImmutablePoint(double x, double y, int[] coord) {
+
         this.x = x;
         this.y = y;
-    }
 
-    public ImmutablePoint() {
-        this.x = 0;
-        this.y = 0;
+        this.coord = new int[coord.length];
+        for (int i = 0; i < coord.length; i++) {
+            this.coord[i] = coord[i];
+        }
     }
 
     public double getX() {
@@ -23,12 +25,21 @@ public final class ImmutablePoint {
         return y;
     }
 
-    public  ImmutablePoint setX( double x){
-        return new ImmutablePoint(x,y);
+    public int[] getCoord() {
+        int[] tempCoord = new int[coord.length];
+        for (int i = 0; i < tempCoord.length; i++) {
+            tempCoord[i] = this.coord[i] ;
+        }
+        return tempCoord;
     }
 
-    public  ImmutablePoint setY( double y) {
-        return new ImmutablePoint(x, y);
+
+    public ImmutablePoint setX(double x) {
+        return new ImmutablePoint(x, y, coord);
+    }
+
+    public ImmutablePoint setY(double y) {
+        return new ImmutablePoint(x, y, coord);
     }
 
     @Override
